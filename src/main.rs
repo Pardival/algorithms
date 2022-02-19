@@ -10,6 +10,7 @@ fn main() {
     println!("++++++++++++++++++++++++++++++++");
     println!("+ More or Less : A             +");
     println!("+ Fibonacci : B                +");
+    println!("+ Fahrenheit : C               +");
     println!("++++++++++++++++++++++++++++++++");
 
     stdin().read_line(&mut option)
@@ -29,6 +30,18 @@ fn main() {
                  .expect("PLEASE, enter a number (positive)");
 
         println!("{}", fibonacci_generator(n));
+    } else if option.trim() == "C" {
+        let mut n = String::new();
+
+        println!("Write a celcius number :");
+        stdin().read_line(&mut n)
+               .expect("Error when we read the user in");
+        
+        let n = n.trim()
+                 .parse()
+                 .expect("PLEASE, enter a number");
+
+        println!("We have : {} Fahrenheit", celsius_to_fahrenheit(n));
     } else {
         println!("nothing good in cmd");
     }
@@ -87,4 +100,8 @@ fn fibonacci_generator(n: u32) -> u32 {
         }
         fibonacci2
     }
+}
+
+fn celsius_to_fahrenheit(celsius: f32) -> f32 {
+    celsius * 9.0/5.0 + 32.0
 }
