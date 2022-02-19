@@ -2,8 +2,23 @@ use rand::prelude::*;
 use std::io::*;
 
 fn main() {
-    println!("Hello, world!");
-    more_or_less();
+    let mut option = String::new();
+    println!("++++++++++++++++++++++++++++++++");
+    println!("+       Algorithms app         +");
+    println!("++++++++++++++++++++++++++++++++");
+    println!("+ Choose an option             +");
+    println!("++++++++++++++++++++++++++++++++");
+    println!("+ More or Less  : A            +");
+    println!("++++++++++++++++++++++++++++++++");
+
+    stdin().read_line(&mut option)
+           .expect("Error when we read the user in");
+
+    if option.trim() == "A" {
+        more_or_less();
+    } else {
+        println!("noting find");
+    }
 }
 
 /// More or less game
