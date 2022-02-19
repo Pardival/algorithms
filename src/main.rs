@@ -8,7 +8,8 @@ fn main() {
     println!("++++++++++++++++++++++++++++++++");
     println!("+ Choose an option             +");
     println!("++++++++++++++++++++++++++++++++");
-    println!("+ More or Less  : A            +");
+    println!("+ More or Less : A             +");
+    println!("+ Fibonacci : B                +");
     println!("++++++++++++++++++++++++++++++++");
 
     stdin().read_line(&mut option)
@@ -16,8 +17,20 @@ fn main() {
 
     if option.trim() == "A" {
         more_or_less();
+    } else if option.trim() == "B" {
+        let mut n = String::new();
+
+        println!("Write a number :");
+        stdin().read_line(&mut n)
+               .expect("Error when we read the user in");
+        
+        let n = n.trim()
+                 .parse()
+                 .expect("PLEASE, enter a number (positive)");
+
+        println!("{}", fibonacci_generator(n));
     } else {
-        println!("noting find");
+        println!("nothing good in cmd");
     }
 }
 
@@ -55,5 +68,23 @@ fn more_or_less() {
         } else {
             println!("PLEASE, enter a number between {} and {}", MIN_VALUE, MAX_VALUE);
         }
+    }
+}
+
+fn fibonacci_generator(n: u32) -> u32 {
+    let mut fibonacci1: u32 = 0;
+    let mut fibonacci2: u32 = 1;
+
+    if n == 0 {
+        fibonacci1
+    } else if n == 1 {
+        fibonacci2
+    } else {
+        for _step in 1..n {
+            let tempo = fibonacci2;
+            fibonacci2 = fibonacci2 + fibonacci1;
+            fibonacci1 = tempo;
+        }
+        fibonacci2
     }
 }
