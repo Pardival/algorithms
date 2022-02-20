@@ -47,6 +47,7 @@ fn main() {
         let mut simple_array: [isize; 9] = [4, -1, 10, 0, 0, 3, 20, 1, -3];
 
         insertion_sort(&mut simple_array);
+        to_string(&simple_array);
         
     } else {
         println!("nothing good in cmd");
@@ -125,5 +126,11 @@ fn insertion_sort(to_sort: &mut [isize]) {
         tempo = to_sort[i];
         to_sort[i] = to_sort[i_min];
         to_sort[i_min] = tempo;
+    }
+}
+
+fn to_string(array: &[isize]) {
+    for i in 0..array.len() {
+        println!("{} ", array[i]);
     }
 }
