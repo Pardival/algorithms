@@ -12,6 +12,7 @@ fn main() {
     println!("+ Fibonacci : B                +");
     println!("+ Fahrenheit : C               +");
     println!("+ Insertion sort : D           +");
+    println!("+ Selection sort : E           +");
     println!("++++++++++++++++++++++++++++++++");
 
     stdin().read_line(&mut option)
@@ -49,7 +50,13 @@ fn main() {
         insertion_sort(&mut simple_array);
         to_string(&simple_array);
         
-    } else {
+    } else if option.trim() == "E" {
+        let mut simple_array: [isize; 9] = [4, -1, 10, 0, 0, 3, 20, 1, -3];
+
+        selection_sort(&mut simple_array);
+        to_string(&simple_array);
+        
+    }else {
         println!("nothing good in cmd");
     }
 }
@@ -126,6 +133,19 @@ fn insertion_sort(to_sort: &mut [isize]) {
         tempo = to_sort[i];
         to_sort[i] = to_sort[i_min];
         to_sort[i_min] = tempo;
+    }
+}
+
+/// Slow sort (selection sort)
+fn selection_sort(to_sort: &mut [isize]) {
+    for i in 0..to_sort.len() {
+        for c in i..to_sort.len() {
+            if to_sort[i] > to_sort[c] {
+                let tempo: isize = to_sort[i];
+                to_sort[i] = to_sort[c];
+                to_sort[c] = tempo;
+            }   
+        }
     }
 }
 
