@@ -11,6 +11,7 @@ fn main() {
     println!("+ More or Less : A             +");
     println!("+ Fibonacci : B                +");
     println!("+ Fahrenheit : C               +");
+    println!("+ Insertion sort : D           +");
     println!("++++++++++++++++++++++++++++++++");
 
     stdin().read_line(&mut option)
@@ -42,6 +43,11 @@ fn main() {
                  .expect("PLEASE, enter a number");
 
         println!("We have : {} Fahrenheit", celsius_to_fahrenheit(n));
+    } else if option.trim() == "D" {
+        let mut simple_array: [isize; 9] = [4, -1, 10, 0, 0, 3, 20, 1, -3];
+
+        insertion_sort(&mut simple_array);
+        
     } else {
         println!("nothing good in cmd");
     }
@@ -104,4 +110,20 @@ fn fibonacci_generator(n: u32) -> u32 {
 
 fn celsius_to_fahrenheit(celsius: f32) -> f32 {
     celsius * 9.0/5.0 + 32.0
+}
+
+/// Slow sort (insertion sort)
+fn insertion_sort(to_sort: &mut [isize]) {
+    for i in 0..to_sort.len() {
+        let mut i_min: usize = i;
+        let tempo: isize;
+        for c in i+1..to_sort.len() {
+            if to_sort[c] < to_sort[i_min] {
+                i_min = c;
+            }
+        }
+        tempo = to_sort[i];
+        to_sort[i] = to_sort[i_min];
+        to_sort[i_min] = tempo;
+    }
 }
